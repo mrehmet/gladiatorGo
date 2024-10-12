@@ -9,6 +9,17 @@ public class CoreStats : MonoBehaviour
     public static List<int> itemCounts;
     public static List<int> itemPrices;
     public static List<int> itemEffectiveness;
+
+    const double PRICE_SCALE_FACTOR = 1.1;
+
+    public static void Buy(int index) {
+        if (dollars >= itemPrices[index]) {
+            itemCounts[index]++;
+            dollars -= itemPrices[index];
+            dollarsPerSecond += itemEffectiveness[index];
+            itemPrices[index] *= PRICE_SCALE_FACTOR;
+        }
+    }
 }
 
 public enum Upgrades {
