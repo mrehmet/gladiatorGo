@@ -9,16 +9,31 @@ public class CoreStats : MonoBehaviour
     public static List<int> itemCounts;
     public static List<int> itemPrices;
     public static List<int> itemEffectiveness;
+    public static Dictionary<Upgrades, bool> upgrades;
 
     const double PRICE_SCALE_FACTOR = 1.1;
 
-    public static void Buy(int index) {
+    public static void CoreInit() {
+        itemCounts = new List<int>();
+        itemPrices = new List<int>();
+        itemEffectiveness = new List<int>();
+        dollars = 0;
+        dollarsPerSecond = 0;
+    }
+
+    public static bool BuyItem(int index) {
         if (dollars >= itemPrices[index]) {
             itemCounts[index]++;
             dollars -= itemPrices[index];
             dollarsPerSecond += itemEffectiveness[index];
-            itemPrices[index] *= PRICE_SCALE_FACTOR;
+            itemPrices[index] = Mathf.Min(itemPrices[index]+1, (int)(itemPrices[index] * PRICE_SCALE_FACTOR));
+            return true;
         }
+        return false;
+    }
+
+    public static void BuyUpgrade(Upgrades u) {
+    
     }
 }
 

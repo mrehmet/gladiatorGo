@@ -7,4 +7,8 @@ public class Driver : MonoBehaviour
     private void FixedUpdate() {
         CoreStats.dollars += CoreStats.dollarsPerSecond * Time.fixedDeltaTime;
     }
+
+    private void Start() {
+        CoreStats.CoreInit();
+    }
 }
