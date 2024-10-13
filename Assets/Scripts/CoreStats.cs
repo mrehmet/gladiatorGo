@@ -13,14 +13,6 @@ public class CoreStats : MonoBehaviour
 
     const double PRICE_SCALE_FACTOR = 1.1;
 
-    public static void CoreInit() {
-        itemCounts = new List<int>();
-        itemPrices = new List<int>();
-        itemEffectiveness = new List<int>();
-        dollars = 0;
-        dollarsPerSecond = 0;
-    }
-
     public static bool BuyItem(int index) {
         if (dollars >= itemPrices[index]) {
             itemCounts[index]++;
