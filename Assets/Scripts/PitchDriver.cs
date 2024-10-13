@@ -152,7 +152,6 @@ public class PitchDriver : MonoBehaviour
             g.SetActive(true);
         }
         Banner.UpdateBanner(result);
-        Banner.QueueBanner("Wow! Tech == Money!", 7f);
         gameObject.SetActive(false);
     }
 }

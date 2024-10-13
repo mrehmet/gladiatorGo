@@ -32,8 +32,10 @@ public class Banner : MonoBehaviour
     }
 
     static IEnumerator ShowBannerQueue(string content, float delay) {
+        //Debug.Log("Start with delay " + delay);
         yield return new WaitForSeconds(delay);
-        UpdateBanner(content);
+        //Debug.Log("Updating");
+        banner.text = content;
         hasPendingCoroutine = false;
     }
 }
