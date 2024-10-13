@@ -20,6 +20,14 @@ public class scrollShop : MonoBehaviour
     void OnGUI() {
         Vector3 pos = transform.position;
         pos.y += Input.mouseScrollDelta.y * scale;
-        transform.position = pos;
+        if (pos.y > 0.95 && pos.y < 10.93) {
+            transform.position = pos;
+        } else if (pos.y <= 0.95) {
+            pos.y = 0.95f;
+            transform.position = pos;
+        } else {
+            pos.y = 10.93f;
+            transform.position = pos;
+        }
     }
 }

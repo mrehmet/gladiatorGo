@@ -11,6 +11,8 @@ public class buyItem : MonoBehaviour
     void Start()
     {
         texts = GetComponentsInChildren<TMP_Text>();
+        texts[0].SetText((CoreStats.itemCounts[id]).ToString());
+        texts[1].SetText((CoreStats.itemPrices[id]).ToString());
     }
 
     // Update is called once per frame
