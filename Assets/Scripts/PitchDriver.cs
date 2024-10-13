@@ -105,13 +105,16 @@ public class PitchDriver : MonoBehaviour
             CoreStats.itemCounts[0] += pencilCnt;
             CoreStats.dollarsPerSecond += pencilCnt * CoreStats.itemEffectiveness[0];
             Banner.UpdateBanner(message); 
+            buyItem.UpdateAll();
             break;
             case 5: 
             message = "Since you sounded believable, VC members sold all of their current-gen cards. GPU prices fell by ";
             float discount = Random.Range(0.05f, 0.50f);
-            message += discount.ToString() + "%.";
             CoreStats.itemPrices[3] = CoreStats.itemPrices[3] * (1 - discount);
+            discount *= 100;
+            message += discount.ToString() + "%.";
             Banner.UpdateBanner(message); 
+            buyItem.UpdateAll();
             break;
             case 6: 
             message = "VC was moved by your story... just kidding they didn't really care.";
@@ -135,7 +138,7 @@ public class PitchDriver : MonoBehaviour
     }
 
     public void EndPitch() {
-        bool negative = Random.Range(0, 4) == 0;
+        bool negative = Random.Range(0, 4) == 1;
         string result;
         if (negative) {
             result = "Venture Capital hated your pitch deck. They hired people to beat you up - your hospital bill is $";
@@ -149,6 +152,7 @@ public class PitchDriver : MonoBehaviour
             g.SetActive(true);
         }
         Banner.UpdateBanner(result);
+        Banner.QueueBanner("Wow! Tech == Money!", 7f);
         gameObject.SetActive(false);
     }
 }
