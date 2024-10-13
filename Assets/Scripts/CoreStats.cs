@@ -7,8 +7,8 @@ public class CoreStats : MonoBehaviour
     public static double dollars;
     public static double dollarsPerSecond;
     public static List<int> itemCounts;
-    public static List<int> itemPrices;
-    public static List<int> itemEffectiveness;
+    public static List<double> itemPrices;
+    public static List<double> itemEffectiveness;
     public static Dictionary<Upgrades, UpgradeStatus> upgrades;
 
     const double PRICE_SCALE_FACTOR = 1.1;
@@ -18,7 +18,7 @@ public class CoreStats : MonoBehaviour
             itemCounts[index]++;
             dollars -= itemPrices[index];
             dollarsPerSecond += itemEffectiveness[index];
-            itemPrices[index] = Mathf.Min(itemPrices[index]+1, (int)(itemPrices[index] * PRICE_SCALE_FACTOR));
+            itemPrices[index] = itemPrices[index] * PRICE_SCALE_FACTOR;
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ public class CoreStats : MonoBehaviour
             if (dollars >= upgrades[u].cost) {
                 dollars -= upgrades[u].cost;
                 dollarsPerSecond += itemCounts[upgrades[u].item] * itemEffectiveness[upgrades[u].item] * (upgrades[u].multiplier-1);
-                itemEffectiveness[upgrades[u].item] = (int)(itemEffectiveness[upgrades[u].item] * upgrades[u].multiplier);
+                itemEffectiveness[upgrades[u].item] = itemEffectiveness[upgrades[u].item] * upgrades[u].multiplier;
                 UpgradeStatus newU = upgrades[u];
                 newU.isUnlocked = true;
                 upgrades[u] = newU;

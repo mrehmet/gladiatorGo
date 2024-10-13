@@ -4446,6 +4446,73 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1618542034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1618542036}
+  - component: {fileID: 1618542035}
+  m_Layer: 0
+  m_Name: CoreDriver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1618542035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618542034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880f05c51ed90484ab4006dbec149618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initItemCounts: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
+  initItemPrices:
+  - 5
+  - 30
+  - 400
+  - 4500
+  - 250000
+  - 2000000
+  - 15000000
+  - 700000000
+  - 1400000000
+  - 3000000000
+  initItemEffectiveness:
+  - 1
+  - 10
+  - 100
+  - 1000
+  - 50000
+  - 200000
+  - 1000000
+  - 5000000
+  - 10000000
+  - 50000000
+--- !u!4 &1618542036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618542034}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.554632, y: -0.18444568, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622671664
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,3 +7041,4 @@ SceneRoots:
   - {fileID: 1850434588}
   - {fileID: 221386448}
   - {fileID: 1347162663}
+  - {fileID: 1618542036}
