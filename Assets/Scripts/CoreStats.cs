@@ -9,7 +9,7 @@ public class CoreStats : MonoBehaviour
     public static List<int> itemCounts;
     public static List<int> itemPrices;
     public static List<int> itemEffectiveness;
-    public static Dictionary<Upgrades, bool> upgrades;
+    public static Dictionary<Upgrades, UpgradeStatus> upgrades;
 
     const double PRICE_SCALE_FACTOR = 1.1;
 
@@ -32,9 +32,32 @@ public class CoreStats : MonoBehaviour
         return false;
     }
 
-    public static void BuyUpgrade(Upgrades u) {
-    
+    public static bool BuyUpgrade(Upgrades u) {
+        if (upgrades.ContainsKey(u) && !upgrades[u].isUnlocked) {
+            if (dollars >= upgrades[u].cost) {
+                dollars -= upgrades[u].cost;
+                dollarsPerSecond += itemCounts[upgrades[u].item] * itemEffectiveness[upgrades[u].item] * (upgrades[u].multiplier-1);
+                itemEffectiveness[upgrades[u].item] = (int)(itemEffectiveness[upgrades[u].item] * upgrades[u].multiplier);
+                UpgradeStatus newU = upgrades[u];
+                newU.isUnlocked = true;
+                upgrades[u] = newU;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            Debug.LogError("Upgrade does not exist");
+            return false;
+        }
     }
+}
+
+[System.Serializable]
+public struct UpgradeStatus {
+    public bool isUnlocked;
+    public int item;
+    public double multiplier;
+    public double cost;
 }
 
 public enum Upgrades {
