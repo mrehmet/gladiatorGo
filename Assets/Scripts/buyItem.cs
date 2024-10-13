@@ -12,7 +12,7 @@ public class buyItem : MonoBehaviour
     {
         texts = GetComponentsInChildren<TMP_Text>();
         texts[0].SetText((CoreStats.itemCounts[id]).ToString());
-        texts[1].SetText((CoreStats.itemPrices[id]).ToString());
+        texts[1].SetText((CoreStats.itemPrices[id]).ToString().Split('.')[0]);
     }
 
     // Update is called once per frame
@@ -25,6 +25,6 @@ public class buyItem : MonoBehaviour
         Debug.Log("Button Clicked " + id);
         CoreStats.BuyItem(id);
         texts[0].SetText((CoreStats.itemCounts[id]).ToString());
-        texts[1].SetText((CoreStats.itemPrices[id]).ToString());
+        texts[1].SetText((CoreStats.itemPrices[id]).ToString().Split('.')[0]);
     }
 }

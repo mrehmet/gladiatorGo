@@ -15,6 +15,6 @@ public class displayMoney : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.SetText(CoreStats.dollars.ToString());
+        text.SetText("$" + CoreStats.dollars.ToString().Split('.')[0]);
     }
 }
