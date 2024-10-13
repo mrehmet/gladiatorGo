@@ -20,6 +20,7 @@ public class Banner : MonoBehaviour
             hasPendingCoroutine = false;
         }
         banner.text = content;
+        QueueBanner("Wow! Tech == Money!", 10f);
     }
 
     public static void QueueBanner(string content, float delay) {
