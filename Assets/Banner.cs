@@ -7,11 +7,14 @@ public class Banner : MonoBehaviour
 {
     static TextMeshPro banner;
     static Coroutine pendingCoroutine;
-    static bool hasPendingCoroutine = false;
+    [SerializeField] SpriteRenderer bannerBackground;
+    public static SpriteRenderer bannerBackgroundStatic;
+    public static bool hasPendingCoroutine = false;
     // Start is called before the first frame update
     void Start()
     {
         banner = GetComponent<TextMeshPro>();
+        bannerBackgroundStatic = bannerBackground;
     }
 
     public static void UpdateBanner(string content) {
@@ -19,7 +22,13 @@ public class Banner : MonoBehaviour
             banner.StopCoroutine(pendingCoroutine);
             hasPendingCoroutine = false;
         }
+         Color randomColor = new Color(
+            Random.Range(0f, 1f), 
+            Random.Range(0f, 1f), 
+            Random.Range(0f, 1f)
+        );
         banner.text = content;
+        bannerBackgroundStatic.color = randomColor;
         QueueBanner("Wow! Tech == Money!", 10f);
     }
 

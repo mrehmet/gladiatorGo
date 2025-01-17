@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Driver : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Driver : MonoBehaviour
     public List<int> initItemCounts;
     public List<double> initItemPrices;
     public List<double> initItemEffectiveness;
+    //const float GAME_DURATION = 180.0f;
     private void FixedUpdate() {
         CoreStats.dollars += CoreStats.dollarsPerSecond * Time.fixedDeltaTime;
     }
@@ -19,6 +21,12 @@ public class Driver : MonoBehaviour
         CoreStats.dollarsPerSecond = initItemEffectiveness[0];
         CoreStats.dollars = 0;
         CoreStats.upgrades = upgrades;
-        Debug.Log(initItemCounts[0]);
-        Debug.Log(CoreStats.itemCounts[0]);
-    }}
+        //StartCoroutine(EndGameAfterTime());
+    }
+
+    
+    /* IEnumerator EndGameAfterTime() {
+        yield return new WaitForSeconds(GAME_DURATION);
+        SceneManager.LoadScene("Leaderboard");
+    } */
+}

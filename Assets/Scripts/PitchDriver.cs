@@ -72,6 +72,7 @@ public class PitchDriver : MonoBehaviour
         }
         string message = "";
         double amount = 0;
+        float discount = 0;
         switch (selected) {
             case 0: 
             message = "VC agrees with you that dot-com is the economy of the future. They gave you $";
@@ -109,8 +110,9 @@ public class PitchDriver : MonoBehaviour
             break;
             case 5: 
             message = "Since you sounded believable, VC members sold all of their current-gen cards. GPU prices fell by ";
-            float discount = Random.Range(0.05f, 0.50f);
+            discount = Random.Range(0.15f, 0.50f);
             CoreStats.itemPrices[3] = CoreStats.itemPrices[3] * (1 - discount);
+            CoreStats.itemPrices[4] = CoreStats.itemPrices[4] * (1 - discount);
             discount *= 100;
             message += discount.ToString() + "%.";
             Banner.UpdateBanner(message); 
@@ -121,10 +123,31 @@ public class PitchDriver : MonoBehaviour
             Banner.UpdateBanner(message); 
             break;
             case 7: 
-            message = "There was a lawyer from a famous franchise in the room who sued you for copyright infringement. You paid $";
+            message = "A lawyer working for a famous franchise in the room sued you for copyright infringement. You paid $";
             amount = Random.Range(120, 360) * CoreStats.dollarsPerSecond;
             message += amount.ToString().Split('.')[0] + ".";
             CoreStats.dollars -= amount;
+            Banner.UpdateBanner(message); 
+            break;
+            case 8:
+            message = "You moved too fast and broke your kneecap. VC was moved by your startup culture and gave you $";
+            amount = Random.Range(120, 360) * CoreStats.dollarsPerSecond;
+            message += amount.ToString().Split('.')[0] + ".";
+            CoreStats.dollars += amount;
+            Banner.UpdateBanner(message); 
+            break;
+            case 9:
+            message = "VC asked you to rewrite everything you own in Rust. It costed $";
+            amount = Random.Range(60, 120) * CoreStats.dollarsPerSecond;
+            message += amount.ToString().Split('.')[0] + " but all your things are now ";
+            CoreStats.dollars -= amount;
+            discount = Random.Range(0.20f, 0.40f);
+            for (int i = 0; i < CoreStats.itemPrices.Count; i++) {
+                CoreStats.itemPrices[i] *= (1 - discount);
+            }
+            discount *= 100;
+            message += discount.ToString() + "% cheaper.";
+            buyItem.UpdateAll();
             Banner.UpdateBanner(message); 
             break;
             default: Debug.LogError("Invalid index"); break;

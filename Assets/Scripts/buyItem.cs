@@ -39,9 +39,12 @@ public class buyItem : MonoBehaviour
 
     void OnMouseDown() {
         Debug.Log("Button Clicked " + id);
-        CoreStats.BuyItem(id);
+        bool success = CoreStats.BuyItem(id);
         texts[0].SetText((CoreStats.itemCounts[id]).ToString());
         texts[1].SetText((CoreStats.itemPrices[id]).ToString().Split('.')[0]);
+        if (!success) {
+            return;
+        }
         string message = "";
         switch (id) {
             case 0:
@@ -75,6 +78,7 @@ public class buyItem : MonoBehaviour
             message = "We now know that cosmic background radiation is really just aliens doing linear algebra. You were able to tap into their results.";
             break;
         }
+
         Banner.UpdateBanner(message);
     }
 }

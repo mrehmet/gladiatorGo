@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GPUClicker.unity
     guid: b5778ae95c5790946b03e53744d2ab4b
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: cc100b36a35d28b4dba63b9706314675
   m_configObjects: {}
